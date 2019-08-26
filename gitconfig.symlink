@@ -1,0 +1,38 @@
+[http]
+	cookiefile = /usr/local/google/home/kpsingh/.gitcookies
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+
+[core]
+	pager = less -FRSX
+
+[alias]
+	st = status
+	bv = branch --sort=-committerdate -av
+	co = checkout
+	cb = checkout -b
+	ri = rebase -i
+	cp = cherry-pick
+	sa = stash -k -u
+	review = push origin HEAD:refs/for/master
+	fc = diff-tree --no-commit-id --name-only -r HEAD
+
+	wtf     = !$HOME/bin/git-wtf
+	count   = !git shortlog -sn
+
+	lg = log --pretty=format:'%Cred%h%Creset - %s%C(yellow)%d%Creset %Cgreen(%cd %an)%Creset' --abbrev-commit --date=short
+	lgs = log --pretty=format:'%Cred%h%Creset - %s%C(yellow)%d%Creset %Cgreen(%cd %an)%Creset' --abbrev-commit --date=short -n50
+	refresh-sha1s = rebase --interactive --exec 'git commit --amend --no-edit'
+	check-series = rebase --interactive --exec 'git format-patch --stdout -1 | scripts/checkpatch.pl --strict -'
+	check-maintainer = rebase --interactive --exec 'git format-patch --stdout -1 | scripts/get_maintainer.pl'
+	list-patches = cherry -v
+
+[user]
+	name = KP Singh
+	email = kpsingh@google.com
+	signingKey = <key>
+

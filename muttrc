@@ -1,0 +1,117 @@
+# ================  SMTP ====================
+set smtp_url = "smtps://kpsingh@chromium.org@smtp.gmail.com:465/"
+set smtp_pass = <pass>
+# ================  IMAP ====================
+set imap_user = 'kpsingh@chromium.org'
+set imap_pass = <pass>
+set spoolfile = imaps://imap.gmail.com/INBOX
+set folder = imaps://imap.gmail.com/
+set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
+set postponed="imaps://imap.gmail.com/[Gmail]/Drafts"
+set mbox="imaps://imap.gmail.com/[Gmail]/All Mail"
+
+# ================  Composition  ====================
+set editor = `echo \$EDITOR`
+set edit_headers = yes  # See the headers when editing
+set charset = UTF-8     # value of $LANG; also fallback for send_charset
+
+# Sender, email address, and sign-off line must match
+unset use_domain        # because joe@localhost is just embarrassing
+set realname = "KP Singh"
+set from = "kpsinghe@chromium.org"
+set use_from = yes
+set envelope_from = yes
+
+# G to get mail
+bind index G imap-fetch-mail
+set editor = "vim"
+set charset = "utf-8"
+set record = ''
+
+bind pager <up> previous-line #scroll inside the message rather than the index
+bind pager <down> next-line
+
+# colors
+# Colours for items in the index
+color index brightcyan color16 ~N
+color index brightcyan color16 ~O
+color index brightred color16 ~D
+
+# URLs
+color body brightgreen color16 "(http|ftp|news|telnet|finger|https)://[^ \"\t\r\n]*"
+color body brightgreen color16 "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger|https)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# email addresses
+color body brightgreen color16 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# header
+color header green color16 "^from:"
+color header green color16 "^to:"
+color header green color16 "^cc:"
+color header green color16 "^date:"
+color header yellow color16 "^newsgroups:"
+color header yellow color16 "^reply-to:"
+color header brightcyan color16 "^subject:"
+color header red color16 "^x-spam-rule:"
+color header green color16 "^x-mailer:"
+color header yellow color16 "^message-id:"
+color header yellow color16 "^Organization:"
+color header yellow color16 "^Organisation:"
+color header yellow color16 "^User-Agent:"
+color header yellow color16 "^message-id: .*pine"
+color header yellow color16 "^X-Fnord:"
+color header yellow color16 "^X-WebTV-Stationery:"
+color header yellow color16 "^X-Message-Flag:"
+color header yellow color16 "^X-Spam-Status:"
+color header yellow color16 "^X-SpamProbe:"
+color header red color16 "^X-SpamProbe: SPAM"
+
+# Coloring quoted text - coloring the first 7 levels:
+color quoted  cyan color16
+color quoted1 color184 color16
+color quoted2 color162 color16
+color quoted3 color29 color16
+color quoted4 cyan color16
+color quoted5 yellow color16
+color quoted6 red color16
+color quoted7 green color16
+
+# manually color the "On Wed, Oct 14, 2015 at 11:46:08AM -0700, Darrick J. Wong wrote:"
+# type lines to match the assocaited quoted text.
+color body cyan color16 	^(>[[:space:]]?){0}On[[:space:]].*wrote:$
+color body color184 color16	^(>[[:space:]]?){1}On[[:space:]].*wrote:$
+color body color162 color16	^(>[[:space:]]?){2}On[[:space:]].*wrote:$
+color body color29 color16	^(>[[:space:]]?){3}On[[:space:]].*wrote:$
+color body cyan color16		^(>[[:space:]]?){4}On[[:space:]].*wrote:$
+color body yellow color16	^(>[[:space:]]?){5}On[[:space:]].*wrote:$
+color body red color16		^(>[[:space:]]?){6}On[[:space:]].*wrote:$
+color body green color16	^(>[[:space:]]?){7}On[[:space:]].*wrote:$
+
+# Default color definitions
+color signature brightmagenta color16
+color indicator color16 cyan 
+color attachment color16 green
+color error red color16
+color message white color16
+color search brightwhite magenta
+color status brightyellow blue
+color tree brightblue color16
+color normal color15 color16
+color tilde green color16
+color bold brightyellow color16
+color markers brightcyan color16
+
+# Colour definitions when on a mono screen
+mono bold bold
+mono underline underline
+mono indicator reverse
+
+# diff coloring
+color   body    brightcyan      color16         ^>*[[:space:]]*(diff[[:space:]]-).*                       
+color   body    green           color16         ^>*[[:space:]]*[\+].*                         
+color   body    red             color16         ^>*[[:space:]]*[\-].*                         
+color   body    brightcyan      color16         ^>*[[:space:]]*---.*                     
+color   body    brightcyan      color16         ^>*[[:space:]]*(\\+\\+\\+).*                     
+color   body    brightblue      color16         ^>*[[:space:]]*[@@].*

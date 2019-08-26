@@ -1,5 +1,5 @@
 [http]
-	cookiefile = /usr/local/google/home/kpsingh/.gitcookies
+	cookiefile = ~/.gitcookies
 
 [color]
 	diff = auto

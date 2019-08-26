@@ -1,7 +1,6 @@
 source "~/.sec/pass.gpg"
 # ================  SMTP ====================
 set smtp_url = "smtps://kpsingh@chromium.org@smtp.gmail.com:465/"
-set smtp_pass = <pass>
 set smtp_pass = "$my_gpass"
 # ================  IMAP ====================
 set imap_user = 'kpsingh@chromium.org'

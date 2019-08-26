@@ -9,6 +9,7 @@
 
 [core]
 	pager = less -FRSX
+	editor = vim
 
 [alias]
 	st = status
@@ -35,4 +36,14 @@
 	name = KP Singh
 	email = kpsingh@google.com
 	signingKey = <key>
+
+[sendemail]
+	from = KP Singh <kpsingh@chromium.org>
+	smtpserver = smtp.gmail.com
+	smtpuser = kpsingh@chromium.org
+	smtpencryption = tls
+	smtppass = <pass>
+	signedoffbycc = false
+	suppresscc = author
+	confirm = always
 

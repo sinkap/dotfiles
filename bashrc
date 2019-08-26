@@ -20,4 +20,5 @@ alias 'k=cd $(git rev-parse --show-cdup)'
 shopt -s histappend
 export HISTFILESIZE=
 export HISTSIZE=
-
+# GPG
+export GPG_TTY=$(tty)

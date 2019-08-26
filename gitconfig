@@ -35,7 +35,7 @@
 [user]
 	name = KP Singh
 	email = kpsingh@google.com
-	signingKey = <key>
+	signingKey = 2A3732F1C310AD0A
 
 [sendemail]
 	from = KP Singh <kpsingh@chromium.org>
@@ -46,4 +46,5 @@
 	signedoffbycc = false
 	suppresscc = author
 	confirm = always
-
+	envelopesender = kpsingh@chromium.org
+	smtpServerPort = 587

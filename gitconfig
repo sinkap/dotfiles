@@ -37,12 +37,15 @@
 	email = kpsingh@google.com
 	signingKey = 2A3732F1C310AD0A
 
+
+[credential]
+    helper = store --file ~/.git-credentials
+
 [sendemail]
 	from = KP Singh <kpsingh@chromium.org>
 	smtpserver = smtp.gmail.com
 	smtpuser = kpsingh@chromium.org
 	smtpencryption = tls
-	smtppass = <pass>
 	signedoffbycc = false
 	suppresscc = author
 	confirm = always

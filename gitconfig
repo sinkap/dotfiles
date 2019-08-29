@@ -35,8 +35,7 @@
 [user]
 	name = KP Singh
 	email = kpsingh@google.com
-	signingKey = 2A3732F1C310AD0A
-
+	signingKey = BCED61E04BEF2AB1!
 
 [credential]
     helper = store --file ~/.git-credentials

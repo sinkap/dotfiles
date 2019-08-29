@@ -12,6 +12,7 @@ alias 'gc=git commit'
 alias 'gca=git commit --amend'
 alias 'glg=git lg'
 # Aliases
+alias 'gpg-newcard=gpg-connect-agent "scd serialno"  "learn --force" /bye'
 alias 's=sudo'
 alias 'mk=make -j`nproc`'
 # Alias gerrit-init to set up Change-Id hook

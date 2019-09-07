@@ -5,35 +5,10 @@ set smtp_pass = "$my_gpass"
 # ================  IMAP ====================
 set imap_user = 'kpsingh@chromium.org'
 set imap_pass = "$my_gpass"
-set spoolfile = imaps://imap.gmail.com/INBOX
-set folder = imaps://imap.gmail.com/
-set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
-set postponed="imaps://imap.gmail.com/[Gmail]/Drafts"
-set mbox="imaps://imap.gmail.com/[Gmail]/All Mail"
 
-# ================  Composition  ====================
-set editor = `echo \$EDITOR`
-set edit_headers = yes  # See the headers when editing
-set charset = UTF-8     # value of $LANG; also fallback for send_charset
+set folder = "imaps://imap.gmail.com/"
+set spoolfile = "+INBOX"
+set header_cache=~/.mutt-cache/kpsingh-chromium-mutthdrcache
+set message_cachedir=~/.mutt-cache/kpsingh-chromium-muttmsgcache
 
-# Sender, email address, and sign-off line must match
-unset use_domain        # because joe@localhost is just embarrassing
-set realname = "KP Singh"
-set from = "kpsinghe@chromium.org"
-set use_from = yes
-set envelope_from = yes
-
-# G to get mail
-bind index G imap-fetch-mail
-set editor = "vim"
-set charset = "utf-8"
-set record = ''
-
-bind pager <up> previous-line #scroll inside the message rather than the index
-bind pager <down> next-line
-
-################################################################################
-# General UI Settings
-################################################################################
-
-source ~/dotfiles/mutt/colors.mutt
+source ~/dotfiles/mutt/common.muttrc

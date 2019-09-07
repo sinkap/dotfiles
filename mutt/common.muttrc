@@ -71,7 +71,7 @@ color body green color234 "^[\+]{3} .*"
 color body cyan  color234 "^[\+][^\+]+.*"
 color body red   color234 "^\-[^\-]+.*"
 color body brightblue color234 "^@@ .*"
-
+unset markers
 
 ################################################################################
 # Sidebar settings
@@ -79,11 +79,11 @@ color body brightblue color234 "^@@ .*"
 
 # Style and colors -------------------------------------------------------------
 set sidebar_visible = yes
-set sidebar_width   = 36
+set sidebar_width   = 24
 # color of folders with new mail
 color sidebar_new yellow color234
 
 # Folders selection shortcuts --------------------------------------------------
-bind index \CP sidebar-prev    # prev folder
-bind index \CN sidebar-next    # next folder
-bind index \CO sidebar-open    # open folder
+bind index <S-up> sidebar-prev # prev folder
+bind index <S-down> sidebar-next # next folder
+bind index <S-right> sidebar-open    # open folder

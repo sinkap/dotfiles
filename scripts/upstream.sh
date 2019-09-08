@@ -43,7 +43,7 @@ function goto-patches()
 		echo "${OUTPUT_DIR:?} does not exist"
 		echo "Looks like you have not run create-patches yet"
 	else
-		cd "${PATCHES_BASE:?}"
+	a	cd "${OUTPUT_DIR:?}"
 	fi
 }
 

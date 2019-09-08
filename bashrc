@@ -6,6 +6,7 @@ esac
 
 
 source ~/dotfiles/scripts/upstream.sh
+alias gp='set-project krsi && goto-proj'
 # Git shortcuts
 alias 'ga=git add'
 alias 'gst=git st'

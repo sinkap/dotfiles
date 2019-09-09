@@ -106,7 +106,6 @@ function get-maintainers()
 		PATCH_FILES=$(ls "${OUTPUT_DIR}"/* | grep -v cover-letter)
 
 		${GIT_CHECKOUT}/scripts/get_maintainer.pl \
-			--separator="," \
 			--no-rolestats ${PATCH_FILES}
 	)
 }

@@ -10,5 +10,6 @@ set folder = "imaps://imap.gmail.com/"
 set spoolfile = "+INBOX"
 set header_cache=~/.mutt-cache/kpsingh-chromium-mutthdrcache
 set message_cachedir=~/.mutt-cache/kpsingh-chromium-muttmsgcache
+folder-hook . 'set record = "^"' # Keep sent messages in the current folder
 
 source ~/dotfiles/mutt/common.muttrc

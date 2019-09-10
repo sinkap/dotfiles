@@ -5,7 +5,6 @@
 ################################################################################
 set copy=no
 set move=no
-unset record # no need to record as gmail does this for us
 set postponed="=[Gmail]/Drafts"
 unset imap_passive
 set mail_check=60
@@ -25,7 +24,6 @@ set envelope_from = yes
 bind index G imap-fetch-mail
 set editor	 = "vim -c 'set tw=70 et' '+/^$' "
 set charset = "utf-8"
-set record = ''
 
 set delete=yes
 set confirmappend=no

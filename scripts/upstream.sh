@@ -53,9 +53,10 @@ function create-patches()
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
 		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE:?}/${UPSTREAM_VERSION:?}"
+		REVISION=${1?"revision range must be providied"}
 
 		if [[ -d ${OUTPUT_DIR:?} ]]; then
-			read -p "${OUTPUT_DIR:?} already exists Overwrite? (y/n)", \
+			read -p "${OUTPUT_DIR:?} already exists Overwrite? (y/n):" \
 				choice
 
 			case "$choice" in
@@ -72,7 +73,7 @@ function create-patches()
 			--cover-letter \
 			--subject "${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}" \
 			--output "${OUTPUT_DIR}" \
-			 ${1?"revision range must be providied"} || exit 1
+			 "${REVISION?}"|| exit 1
 
 		sed -i '/^Change-Id/d' ${OUTPUT_DIR}/* || exit 1
 

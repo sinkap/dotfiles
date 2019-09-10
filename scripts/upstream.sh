@@ -3,9 +3,7 @@
 # defaults
 UPSTREAM_PROJECT="krsi"
 UPSTREAM_STATE="RFC"
-UPSTREAM_VERSION="v1"
-
-
+UPSTREAM_VERSION="v2"
 
 function set-project() 
 {

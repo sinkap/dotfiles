@@ -2,10 +2,10 @@
 
 # defaults
 UPSTREAM_PROJECT="krsi"
-UPSTREAM_STATE="RFC"
-UPSTREAM_VERSION="v2"
+UPSTREAM_STATE="bpf-next PATCH"
+UPSTREAM_VERSION="v1"
 
-function set-project() 
+function set-project()
 {
 	export UPSTREAM_PROJECT=${1:?"version (eg. v1) must be provided"}
 }
@@ -35,7 +35,8 @@ function goto-proj()
 function goto-patches()
 {
 	PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
-	OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE:?}/${UPSTREAM_VERSION:?}"
+	OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
+
 
 	if [[ ! -d ${OUTPUT_DIR:?} ]]; then
 		echo "${OUTPUT_DIR:?} does not exist"
@@ -48,9 +49,10 @@ function goto-patches()
 function create-patches()
 {
 	(
+		set -x
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
-		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE:?}/${UPSTREAM_VERSION:?}"
+		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
 		REVISION=${1?"revision range must be providied"}
 
 		if [[ -d ${OUTPUT_DIR:?} ]]; then
@@ -69,8 +71,8 @@ function create-patches()
 		cd "${GIT_CHECKOUT}" || exit 1
 		git format-patch --signoff \
 			--cover-letter \
-			--subject "${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}" \
-			--output "${OUTPUT_DIR}" \
+			--subject-prefix "${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}" \
+			-o "${OUTPUT_DIR}" \
 			 "${REVISION?}"|| exit 1
 
 		sed -i '/^Change-Id/d' ${OUTPUT_DIR}/* || exit 1
@@ -87,8 +89,7 @@ function get-maintainers()
 	(
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
-		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE:?}/${UPSTREAM_VERSION:?}"
-
+		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
 
 		if [[ ! -f ${GIT_CHECKOUT}/scripts/get_maintainer.pl ]]; then
 			echo "Project: ${UPSTREAM_PROJECT:?} is not a kernel project"

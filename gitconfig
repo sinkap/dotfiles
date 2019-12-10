@@ -21,7 +21,7 @@
 	sa = stash -k -u
 	review = push origin HEAD:refs/for/master
 	fc = diff-tree --no-commit-id --name-only -r HEAD
-
+	list = show --pretty="" --name-status
 	wtf     = !$HOME/bin/git-wtf
 	count   = !git shortlog -sn
 

@@ -71,7 +71,7 @@ function create-patches()
 		if [[ "${UPSTREAM_VERSION:?}" == "v1" ]]; then
 			SUBJECT_PREFIX=${UPSTREAM_STATE:?}
 		else
-			SUBJECT_PREFIX=${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}
+			SUBJECT_PREFIX="${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}"
 		fi
 
 		cd "${GIT_CHECKOUT}" || exit 1

@@ -2,8 +2,8 @@
 
 # defaults
 UPSTREAM_PROJECT="krsi"
-UPSTREAM_STATE="bpf-next PATCH"
-UPSTREAM_VERSION="v1"
+UPSTREAM_STATE="PATCH bpf-next"
+UPSTREAM_VERSION="v2"
 
 function set-project()
 {
@@ -67,11 +67,17 @@ function create-patches()
 		fi
 
 		mkdir -p "${OUTPUT_DIR}"
+		
+		if [[ "${UPSTREAM_VERSION:?}" == "v1" ]]; then
+			SUBJECT_PREFIX=${UPSTREAM_STATE:?}
+		else
+			SUBJECT_PREFIX=${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}
+		fi
 
 		cd "${GIT_CHECKOUT}" || exit 1
+#			--cover-letter \
 		git format-patch --signoff \
-			--cover-letter \
-			--subject-prefix "${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}" \
+			--subject-prefix "${SUBJECT_PREFIX:?}" \
 			-o "${OUTPUT_DIR}" \
 			 "${REVISION?}"|| exit 1
 

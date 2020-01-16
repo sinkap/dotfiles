@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# defaults
-UPSTREAM_PROJECT="krsi"
-UPSTREAM_STATE="PATCH bpf-next"
-UPSTREAM_VERSION="v2"
+UPSTREAM_CONF_FILE="$( dirname "${BASH_SOURCE[0]}" )/upstream.conf"
 
 function set-project()
 {
@@ -12,6 +9,7 @@ function set-project()
 
 function proj()
 {
+	source $UPSTREAM_CONF_FILE
 	echo Working on "\"${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}\"" of \
 		"\"${UPSTREAM_PROJECT:?}\""
 }
@@ -28,15 +26,16 @@ function set-project-version()
 
 function goto-proj()
 {
+	source $UPSTREAM_CONF_FILE
 	GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 	cd "${GIT_CHECKOUT:?}"
 }
 
 function goto-patches()
 {
+	source $UPSTREAM_CONF_FILE
 	PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
 	OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
-
 
 	if [[ ! -d ${OUTPUT_DIR:?} ]]; then
 		echo "${OUTPUT_DIR:?} does not exist"
@@ -50,6 +49,7 @@ function create-patches()
 {
 	(
 		set -x
+		source $UPSTREAM_CONF_FILE
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
 		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
@@ -75,13 +75,24 @@ function create-patches()
 		fi
 
 		cd "${GIT_CHECKOUT}" || exit 1
-#			--cover-letter \
-		git format-patch --signoff \
+
+		if [[ "${REVISION:?}" == *".."* ]]; then
+			NUM_COMMITS=`git rev-list --count "${REVISION?}"`
+		else
+			NUM_COMMITS=`git rev-list --count "${REVISION?}"..HEAD`
+		fi
+
+		if (($NUM_COMMITS > 1)); then
+			COVER_LETTER="--cover-letter"
+		fi
+
+		git format-patch --signoff $COVER_LETTER \
 			--subject-prefix "${SUBJECT_PREFIX:?}" \
 			-o "${OUTPUT_DIR}" \
 			 "${REVISION?}"|| exit 1
 
 		sed -i '/^Change-Id/d' ${OUTPUT_DIR}/* || exit 1
+
 
 		if [[ -f ${GIT_CHECKOUT}/scripts/checkpatch.pl ]]; then
 			echo "Checking patches..."
@@ -93,6 +104,7 @@ function create-patches()
 function get-maintainers()
 {
 	(
+		source $UPSTREAM_CONF_FILE
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
 		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
 		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"

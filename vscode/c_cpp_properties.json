@@ -5,8 +5,14 @@
             "cStandard": "c11",
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}"
             ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            },
             "defines": [
                 "__GNUC__",
                 "__KERNEL__"
@@ -16,4 +22,3 @@
     ],
     "version": 4
 }
-

@@ -50,5 +50,9 @@
 	confirm = always
 	envelopesender = kpsingh@chromium.org
 	smtpServerPort = 587
+
+[pretty]
+        fixes = Fixes: %h (\"%s\")
+
 [commit]
 	# gpgsign = true

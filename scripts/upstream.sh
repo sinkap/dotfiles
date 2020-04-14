@@ -11,7 +11,7 @@ function proj()
 {
 	source $UPSTREAM_CONF_FILE
 	echo Working on "\"${UPSTREAM_STATE:?} ${UPSTREAM_VERSION:?}\"" of \
-		"\"${UPSTREAM_PROJECT:?}\""
+		"\"${UPSTREAM_PROJECT:?}\"" patch "\"${UPSTREAM_PATCH:?}\""
 }
 
 function set-project-state()
@@ -34,7 +34,7 @@ function goto-proj()
 function goto-patches()
 {
 	source $UPSTREAM_CONF_FILE
-	PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
+	PATCHES_BASE="${HOME}/patches/${UPSTREAM_PATCH:?}"
 	OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
 
 	if [[ ! -d ${OUTPUT_DIR:?} ]]; then
@@ -51,7 +51,7 @@ function create-patches()
 		set -x
 		source $UPSTREAM_CONF_FILE
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
-		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
+		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PATCH:?}"
 		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
 		REVISION=${1?"revision range must be providied"}
 
@@ -106,7 +106,7 @@ function get-maintainers()
 	(
 		source $UPSTREAM_CONF_FILE
 		GIT_CHECKOUT="${HOME}/projects/${UPSTREAM_PROJECT:?}"
-		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PROJECT:?}"
+		PATCHES_BASE="${HOME}/patches/${UPSTREAM_PATCH:?}"
 		OUTPUT_DIR="${PATCHES_BASE:?}/${UPSTREAM_STATE// /_}/${UPSTREAM_VERSION:?}"
 
 		if [[ ! -f ${GIT_CHECKOUT}/scripts/get_maintainer.pl ]]; then

@@ -1,0 +1,19 @@
+{
+    "workbench.editor.enablePreview": false,
+    "files.exclude": {
+        "**/.*.*.cmd": true,
+        "**/.*.d": true,
+        "**/.*.S": true,
+        "**/.tmp*": true,
+        "**/*.o": true,
+    },
+    "[c]": {
+        "editor.detectIndentation": false,
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false,
+        "editor.rulers": [80]
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "checkpatch.run": "manual"
+}
+

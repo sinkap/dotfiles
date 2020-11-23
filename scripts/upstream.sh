@@ -83,7 +83,9 @@ function create-patches()
 		fi
 
 		if (($NUM_COMMITS > 1)); then
-			COVER_LETTER="--cover-letter"
+			if [[ "${NEED_COVER_LETTER:?}" == "y" ]]; then
+				COVER_LETTER="--cover-letter"
+			fi
 		fi
 
 		git format-patch --signoff $COVER_LETTER \
@@ -94,10 +96,8 @@ function create-patches()
 		sed -i '/^Change-Id/d' ${OUTPUT_DIR}/* || exit 1
 
 
-		if [[ -f ${GIT_CHECKOUT}/scripts/checkpatch.pl ]]; then
-			echo "Checking patches..."
-			${GIT_CHECKOUT}/scripts/checkpatch.pl "${OUTPUT_DIR}"/*
-		fi
+		echo "Checking patches..."
+		scripts/checkpatch.pl "${OUTPUT_DIR}"/*
 	)
 }
 

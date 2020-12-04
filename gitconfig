@@ -34,21 +34,21 @@
 
 [user]
 	name = KP Singh
-	email = kpsingh@google.com
+	email = kpsingh@kernel.org
 	signingKey = BCED61E04BEF2AB1!
 
 [credential]
     helper = store --file ~/.git-credentials
 
 [sendemail]
-	from = KP Singh <kpsingh@chromium.org>
-	smtpserver = smtp.gmail.com
-	smtpuser = kpsingh@chromium.org
+	from = KP Singh <kpsingh@kernel.org>
+	smtpserver = mail.kernel.org
+	smtpuser = kpsingh
 	smtpencryption = tls
 	signedoffbycc = false
 	suppresscc = author
 	confirm = always
-	envelopesender = kpsingh@chromium.org
+	envelopesender = kpsingh@kernel.org
 	smtpServerPort = 587
 
 [pretty]

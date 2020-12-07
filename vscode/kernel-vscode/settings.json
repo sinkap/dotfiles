@@ -1,0 +1,41 @@
+{
+  "files.exclude": {
+    "**/.*.cmd": true,
+    "**/.*.d": true,
+    "**/.*.S": true,
+    "**/.tmp*": true,
+    "**/*.o": true,
+    "**/*.a": true,
+    "**/*.builtin": true,
+    "**/*.order": true,
+    "**/*.orig": true,
+    "**/*.symvers": true,
+    "**/*.modinfo": true,
+    "**/*.map": true
+  },
+  "search.exclude": {
+    "**/.*.cmd": true,
+    "**/.*.d": true,
+    "**/.*.S": true,
+    "**/.tmp*": true,
+    "**/*.o": true,
+    "**/*.a": true,
+    "**/*.builtin": true,
+    "**/*.order": true,
+    "**/*.orig": true,
+    "**/*.symvers": true,
+    "**/*.modinfo": true,
+    "**/*.map": true
+  },
+  "[c]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 8,
+    "editor.insertSpaces": false,
+    "editor.rulers": [80]
+  },
+  "files.associations": {
+      "*_defconfig" : "kconfig"
+  },
+  "checkpatch.run": "onSave",
+  "git.alwaysSignOff": true
+}

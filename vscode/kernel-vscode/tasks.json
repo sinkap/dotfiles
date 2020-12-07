@@ -1,0 +1,83 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start virtual machine",
+      "type": "shell",
+      "command": "vm start",
+      "presentation": {
+        "clear": true
+      },
+      "isBackground": true,
+      "options": {
+        "env": {
+          "VM_CLI_KERNEL_PATH": "${workspaceFolder}/arch/x86_64/boot/bzImage"
+        }
+      },
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".",
+            "endsPattern": "."
+          }
+        }
+      ]
+    },
+    {
+      "label": "Stop virtual machine",
+      "type": "shell",
+      "command": "vm stop",
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build kernel",
+      "type": "shell",
+      "command": "make -j`nproc` CC='ccache clang' all compile_commands.json",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "clear": true
+      },
+      "options": {
+        "env": {
+          "KBUILD_BUILD_TIMESTAMP": ""
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run BPF selftests",
+      "type": "shell",
+      "command": "make -j`nproc` && vm push test_progs && vm run /root/test_progs",
+      "options": {"cwd": "${workspaceFolder}/tools/testing/selftests/bpf"},
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run BPF selftests in this file",
+      "type": "shell",
+      "command": "if [ ${fileDirname} == ${workspaceFolder}/tools/testing/selftests/bpf/prog_tests ] ; then make -j`nproc` && vm push test_progs && vm run \"/root/test_progs -t ${fileBasenameNoExtension}\"; else echo -e \"\\e[31mOpen a test in ${workspaceFolder}/tools/testing/selftests/bpf/prog_tests\\e[0m\"; fi",
+      "options": {"cwd": "${workspaceFolder}/tools/testing/selftests/bpf"},
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

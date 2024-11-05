@@ -35,7 +35,7 @@
 [user]
 	name = KP Singh
 	email = kpsingh@kernel.org
-	signingKey = BCED61E04BEF2AB1!
+#	signingKey = BCED61E04BEF2AB1!
 
 [credential]
     helper = store --file ~/.git-credentials

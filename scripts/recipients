@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cat << EOF
-Christophe Leroy <christophe.leroy@c-s.fr>
-Peter Zijlstra <peterz@infradead.org>
-Andrew Morton <akpm@linux-foundation.org>
-EOF
-
-
